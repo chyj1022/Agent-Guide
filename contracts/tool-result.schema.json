@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationToolResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["call_id", "status", "data", "provenance"],
+  "properties": {
+    "call_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["ok", "empty", "denied", "invalid", "transient_error", "permanent_error"]},
+    "data": {"type": ["object", "array", "null"]},
+    "error_code": {"type": "string", "minLength": 1},
+    "provenance": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["source_id", "location", "version"], "properties": {"source_id": {"type": "string", "minLength": 1}, "location": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}}}}
+  },
+  "allOf": [{"if": {"properties": {"status": {"enum": ["denied", "invalid", "transient_error", "permanent_error"]}}}, "then": {"required": ["error_code"], "properties": {"data": {"type": "null"}}}}]
+}

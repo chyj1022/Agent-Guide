@@ -1,0 +1,6 @@
+{
+  "tool-request": {"run_id": "demo-1", "user_id": "fixture-user", "call_id": "call-1", "tool": "search_catalog", "arguments": {"query": "GPU"}, "state_version": 0},
+  "tool-result": {"call_id": "call-1", "status": "ok", "data": [{"item_id": "fixture-1"}], "provenance": [{"source_id": "fixture-catalog", "location": "row:1", "version": "2026-10-31"}]},
+  "approval": {"approval_id": "approval-fixture", "run_id": "demo-1", "user_id": "fixture-user", "tool": "save_draft", "arguments_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "state_version": 0, "expires_at_epoch": 0, "decision": "approved"},
+  "run-state": {"run_id": "demo-1", "version": 0, "status": "pending", "limits": {"steps": 5, "tool_calls": 3, "cost_microunits": 100}, "usage": {"steps": 0, "tool_calls": 0, "cost_microunits": 0}}
+}

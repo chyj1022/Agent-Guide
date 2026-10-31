@@ -1,0 +1,829 @@
+[
+  {
+    "id": "AGT-001",
+    "title": "LLM 호출과 에이전트의 차이",
+    "path": "docs/concepts/agent/AGT-001.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-8bac020d",
+    "keywords": [
+      "워크플로",
+      "자율성",
+      "단일호출"
+    ],
+    "summary": "단순 호출은 한 번 답을 만들고, 워크플로는 사람이 정한 순서를 따르며, 에이전트는 관찰에 따라 다음 행동을 선택한다. 자율성의 위치가 세 구조를 구분한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-8bac020d"
+  },
+  {
+    "id": "AGT-002",
+    "title": "에이전트가 정말 필요한가",
+    "path": "docs/concepts/agent/AGT-002.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-6ac42cd2",
+    "keywords": [
+      "도입판단",
+      "비용",
+      "복잡성"
+    ],
+    "summary": "에이전트 도입 검토는 기능 이름보다 문제의 분기와 반복을 먼저 확인하는 절차다. 불필요한 자율성은 지연과 디버깅 부담을 늘린다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-6ac42cd2"
+  },
+  {
+    "id": "AGT-003",
+    "title": "워크플로가 먼저다, 에이전트는 마지막 선택지",
+    "path": "docs/concepts/agent/AGT-003.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-d6297eac",
+    "keywords": [
+      "체인",
+      "라우팅",
+      "구조선택"
+    ],
+    "summary": "한 번 호출, 체인, 라우팅, 에이전트는 제어를 모델에 맡기는 정도가 다르다. 필요한 곳에만 판단을 위임해야 운영 경계를 이해하기 쉽다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-d6297eac"
+  },
+  {
+    "id": "AGT-004",
+    "title": "꼭 알아야 할 용어 정리",
+    "path": "docs/concepts/agent/AGT-004.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-68e0e155",
+    "keywords": [
+      "용어",
+      "toolcalling",
+      "HITL"
+    ],
+    "summary": "도구, 스키마, 턴, 궤적, 메모리, HITL은 모델과 실행기의 책임을 나누기 위한 용어다. 같은 단어를 다른 의미로 쓰면 설계와 평가가 엇갈린다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-68e0e155"
+  },
+  {
+    "id": "AGT-005",
+    "title": "에이전트의 구성 요소",
+    "path": "docs/concepts/agent/AGT-005.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-06dd0a84",
+    "keywords": [
+      "구성요소",
+      "계획",
+      "가드레일"
+    ],
+    "summary": "에이전트는 모델, 도구, 기억과 계획을 실행 제어로 묶은 시스템이다. 가드레일이 함께 있어야 동작 범위를 통제할 수 있다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-06dd0a84"
+  },
+  {
+    "id": "AGT-006",
+    "title": "처음 만드는 사람이 겪는 다섯 가지 오해",
+    "path": "docs/concepts/agent/AGT-006.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-9e2cf43b",
+    "keywords": [
+      "오해",
+      "호스트책임",
+      "최소권한"
+    ],
+    "summary": "초기 오해를 풀려면 판단과 실행을 분리해야 한다. 모델 성능이나 프롬프트만으로 권한과 반복 문제를 해결할 수 없다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-9e2cf43b"
+  },
+  {
+    "id": "AGT-007",
+    "title": "함수 호출은 실제로 어떻게 동작하나",
+    "path": "docs/concepts/agent/AGT-007.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-8346173f",
+    "keywords": [
+      "함수호출",
+      "호출ID",
+      "실행기"
+    ],
+    "summary": "함수 호출은 질문에서 실행 요청을 만든 뒤 도구 결과를 다시 모델에게 전달하는 왕복 프로토콜이다. 실행과 결과의 대응 관계를 보존해야 한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-8346173f"
+  },
+  {
+    "id": "AGT-008",
+    "title": "도구 설계는 description 이 절반이다",
+    "path": "docs/concepts/agent/AGT-008.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-baa6057d",
+    "keywords": [
+      "description",
+      "스키마",
+      "도구선택"
+    ],
+    "summary": "도구 설명은 모델이 기능을 선택하는 인터페이스다. 대상, 사용 조건, 제외 조건과 반환 모양이 분명해야 잘못된 선택과 반복을 줄인다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-baa6057d"
+  },
+  {
+    "id": "AGT-009",
+    "title": "구조화 출력으로 결과 모양을 고정한다",
+    "path": "docs/concepts/agent/AGT-009.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-17a16470",
+    "keywords": [
+      "구조화출력",
+      "JSONSchema",
+      "근거검증"
+    ],
+    "summary": "구조화 출력은 프로그램이 사용할 결과의 키, 타입과 허용값을 제한하는 방법이다. 모양의 안정성과 내용의 정확성은 별개다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-17a16470"
+  },
+  {
+    "id": "AGT-010",
+    "title": "도구가 실패할 때, 재시도, 타임아웃, 회로 차단",
+    "path": "docs/concepts/agent/AGT-010.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-8e6a4357",
+    "keywords": [
+      "타임아웃",
+      "재시도",
+      "회로차단"
+    ],
+    "summary": "도구 신뢰성은 타임아웃, 제한된 재시도, 회로 차단과 오류 계약으로 만든다. 실패를 관찰 가능한 상태로 바꾸면 대체 경로를 선택할 수 있다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-8e6a4357"
+  },
+  {
+    "id": "AGT-011",
+    "title": "도구를 병렬로 부른다",
+    "path": "docs/concepts/agent/AGT-011.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-9a594699",
+    "keywords": [
+      "병렬",
+      "의존성",
+      "동시성"
+    ],
+    "summary": "병렬 도구 실행은 서로 독립된 관찰을 동시에 수집해 지연을 줄인다. 의존성과 부작용이 있으면 실행 순서가 의미를 갖는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-9a594699"
+  },
+  {
+    "id": "AGT-012",
+    "title": "위험한 도구를 감싸는 세 겹",
+    "path": "docs/concepts/agent/AGT-012.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-7fbf9c98",
+    "keywords": [
+      "경로안전",
+      "SQL",
+      "최소권한"
+    ],
+    "summary": "위험 도구 방어는 기능을 제거하고 범위를 줄인 뒤 실행 직전 검증과 승인을 적용하는 다층 통제다. 권한 자체가 피해의 상한을 정한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-7fbf9c98"
+  },
+  {
+    "id": "AGT-013",
+    "title": "프레임워크 없이 40줄로 만드는 첫 에이전트",
+    "path": "docs/concepts/agent/AGT-013.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-b73d1ba8",
+    "keywords": [
+      "직접루프",
+      "registry",
+      "기준선"
+    ],
+    "summary": "작은 직접 구현 루프는 프레임워크가 감추는 왕복을 이해하는 학습 기준선이다. 도구 등록, 명세, 모델 호출, 관찰 추가와 종료가 핵심이다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-b73d1ba8"
+  },
+  {
+    "id": "AGT-014",
+    "title": "생각하고, 행동하고, 관찰한다",
+    "path": "docs/concepts/agent/AGT-014.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-6ac9e9fb",
+    "keywords": [
+      "ReAct",
+      "관찰",
+      "반복제어"
+    ],
+    "summary": "ReAct는 다음 행동을 선택하고 실행한 결과를 관찰해 다시 판단하는 반복 구조다. 관찰이 다음 경로를 바꾼다는 점이 중요하다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-6ac9e9fb"
+  },
+  {
+    "id": "AGT-015",
+    "title": "종료 조건을 설계한다",
+    "path": "docs/concepts/agent/AGT-015.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-917da8dd",
+    "keywords": [
+      "종료조건",
+      "취소",
+      "부분결과"
+    ],
+    "summary": "종료 설계는 정상 완료, 상한 중단, 제자리걸음과 사용자 취소를 구분하는 계약이다. 멈춘 이유를 알려야 부분 결과를 완성본으로 오해하지 않는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-917da8dd"
+  },
+  {
+    "id": "AGT-016",
+    "title": "무엇을 기억하고 무엇을 버릴 것인가",
+    "path": "docs/concepts/agent/AGT-016.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-32f93b6a",
+    "keywords": [
+      "메모리",
+      "작업상태",
+      "장기기억"
+    ],
+    "summary": "기억은 최근 대화, 현재 작업 상태와 세션을 넘는 사실을 다른 수명으로 관리하는 설계다. 모두 대화 배열에 쌓으면 비용과 맥락 손실이 커진다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-32f93b6a"
+  },
+  {
+    "id": "AGT-017",
+    "title": "컨텍스트가 넘칠 때 압축한다",
+    "path": "docs/concepts/agent/AGT-017.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-423c4d1e",
+    "keywords": [
+      "압축",
+      "컨텍스트",
+      "artifact"
+    ],
+    "summary": "컨텍스트 압축은 정보 종류에 따라 보존, 요약, 외부 보관과 제거를 다르게 적용하는 과정이다. 중요한 결정과 실패를 유지해야 탐색이 되풀이되지 않는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-423c4d1e"
+  },
+  {
+    "id": "AGT-018",
+    "title": "스트리밍으로 진행 상황을 보여 준다",
+    "path": "docs/concepts/agent/AGT-018.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-c967a126",
+    "keywords": [
+      "스트리밍",
+      "SSE",
+      "진행이벤트"
+    ],
+    "summary": "스트리밍은 긴 실행의 진행과 답변을 이벤트로 전달하는 사용자 인터페이스 계약이다. 실행 중 무엇을 하는지와 최종 종료를 구분해 알려야 한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-c967a126"
+  },
+  {
+    "id": "AGT-019",
+    "title": "에이전트는 왜 비싼가",
+    "path": "docs/concepts/agent/AGT-019.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-1840fe7f",
+    "keywords": [
+      "비용",
+      "토큰",
+      "누적입력"
+    ],
+    "summary": "에이전트 비용은 반복마다 이전 기록을 다시 입력하는 누적 구조에서 커진다. 호출 횟수뿐 아니라 각 관찰의 길이를 줄여야 한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-1840fe7f"
+  },
+  {
+    "id": "AGT-020",
+    "title": "라우팅으로 쉬운 요청을 싸게 처리한다",
+    "path": "docs/concepts/agent/AGT-020.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-e1618895",
+    "keywords": [
+      "라우팅",
+      "승급",
+      "비용등급"
+    ],
+    "summary": "요청 라우팅은 쉬운 일을 템플릿이나 한 번 호출로 처리하고 탐색이 필요한 것만 에이전트로 보내는 구조다. 오분류에서 회복할 길이 있어야 한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-e1618895"
+  },
+  {
+    "id": "AGT-021",
+    "title": "캐싱으로 반복 비용을 줄인다",
+    "path": "docs/concepts/agent/AGT-021.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-6e3ad387",
+    "keywords": [
+      "캐싱",
+      "TTL",
+      "사용자격리"
+    ],
+    "summary": "캐싱은 고정 입력, 반복 조회와 동일 응답을 다른 계층에서 재사용해 비용을 줄인다. 데이터 신선도와 사용자 범위가 캐시 정확성을 결정한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-6e3ad387"
+  },
+  {
+    "id": "AGT-022",
+    "title": "계획과 반성",
+    "path": "docs/concepts/agent/AGT-022.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-28f6dda5",
+    "keywords": [
+      "계획",
+      "반성",
+      "재계획"
+    ],
+    "summary": "계획은 목표를 실행 가능한 단계와 의존성으로 나누고 반성은 결과의 누락과 오류를 점검한다. 검증 수단과 반복 상한이 있어야 추가 호출이 가치를 갖는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-28f6dda5"
+  },
+  {
+    "id": "AGT-023",
+    "title": "언제 여럿으로 나눌 것인가",
+    "path": "docs/concepts/agent/AGT-023.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-7c267b3f",
+    "keywords": [
+      "멀티에이전트",
+      "감독자",
+      "역할분리"
+    ],
+    "summary": "멀티 에이전트는 다른 도구와 판단 기준이 필요한 역할을 분리하는 구조다. 역할 이름을 늘리는 것만으로 품질이 좋아지지는 않는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-7c267b3f"
+  },
+  {
+    "id": "AGT-024",
+    "title": "왜 그래프로 만드나",
+    "path": "docs/concepts/agent/AGT-024.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-fbc0dfea",
+    "keywords": [
+      "상태그래프",
+      "LangGraph",
+      "흐름제어"
+    ],
+    "summary": "상태 그래프는 반복문 안의 판단과 도구 및 중단 분기를 노드와 엣지로 드러내는 표현이다. 흐름이 복잡할 때 상태 저장과 재개를 체계화한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-fbc0dfea"
+  },
+  {
+    "id": "AGT-025",
+    "title": "미리 만들어진 ReAct 에이전트가 가장 빠르다",
+    "path": "docs/concepts/agent/AGT-025.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-a3354c00",
+    "keywords": [
+      "prebuilt",
+      "도구데코레이터",
+      "프로토타입"
+    ],
+    "summary": "미리 만든 ReAct 생성기는 도구 정의와 모델을 연결해 기본 왕복 루프를 빠르게 구성하는 학습 출발점이다. 간결한 호출 뒤의 제어 책임은 남는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-a3354c00"
+  },
+  {
+    "id": "AGT-026",
+    "title": "직접 그래프 만들기: State, Node, Edge",
+    "path": "docs/concepts/agent/AGT-026.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-6d1e08df",
+    "keywords": [
+      "State",
+      "Node",
+      "Edge",
+      "reducer"
+    ],
+    "summary": "State는 공유 데이터, Node는 상태 변화, Edge는 다음 실행 위치다. reducer는 여러 갱신이 어떻게 합쳐지는지 정한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-6d1e08df"
+  },
+  {
+    "id": "AGT-027",
+    "title": "체크포인트로 중단하고 이어서 한다",
+    "path": "docs/concepts/agent/AGT-027.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-39de8562",
+    "keywords": [
+      "체크포인트",
+      "threadid",
+      "복구"
+    ],
+    "summary": "체크포인트는 실행 중 상태와 다음 위치를 저장해 대화와 중단 작업을 이어가는 장치다. 대화 식별자와 저장소 수명이 복구 범위를 정한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-39de8562"
+  },
+  {
+    "id": "AGT-028",
+    "title": "중간에 사람 승인을 넣는다",
+    "path": "docs/concepts/agent/AGT-028.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-3803e1f6",
+    "keywords": [
+      "승인",
+      "interrupt",
+      "재개"
+    ],
+    "summary": "사람 승인 노드는 실행할 동작과 인자를 보여 주고 판단을 받을 때까지 상태를 보류한다. 승인과 실제 실행을 결합해 무단 부작용을 막는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-3803e1f6"
+  },
+  {
+    "id": "AGT-029",
+    "title": "상태를 DB 에 저장한다",
+    "path": "docs/concepts/agent/AGT-029.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-b2541d2b",
+    "keywords": [
+      "지속상태",
+      "잠금",
+      "PostgreSQL"
+    ],
+    "summary": "지속 상태 저장은 서버 재시작과 여러 인스턴스에서도 대화 상태를 복원하는 기반이다. 저장소 선택과 동시성 및 보관 정책을 함께 정한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-b2541d2b"
+  },
+  {
+    "id": "AGT-030",
+    "title": "스트리밍과 이벤트로 그래프 안을 들여다본다",
+    "path": "docs/concepts/agent/AGT-030.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-fb2934e0",
+    "keywords": [
+      "그래프스트림",
+      "관측",
+      "상태수정"
+    ],
+    "summary": "그래프 스트림은 전체 상태, 변경분, 모델 토큰과 사용자 정의 진행을 다른 관측 목적으로 제공한다. 내부 진단과 사용자 화면에 필요한 정보가 다르다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-fb2934e0"
+  },
+  {
+    "id": "AGT-031",
+    "title": "멀티 에이전트와 관측",
+    "path": "docs/concepts/agent/AGT-031.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-a172fcac",
+    "keywords": [
+      "감독자그래프",
+      "재귀한도",
+      "운영지표"
+    ],
+    "summary": "감독자 그래프는 각 담당자를 노드로 두고 결과에 따라 다음 담당자나 종료를 선택한다. 협업 흐름도 전체 예산과 관측 기준이 필요하다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-a172fcac"
+  },
+  {
+    "id": "AGT-032",
+    "title": "반드시 넣어야 할 안전장치",
+    "path": "docs/concepts/agent/AGT-032.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-6a780e82",
+    "keywords": [
+      "운영안전",
+      "가드레일",
+      "예산"
+    ],
+    "summary": "운영 안전장치는 반복, 자원, 권한, 승인과 정보 흐름의 서로 다른 실패를 각각 제한한다. 하나의 가드만으로 모든 폭주를 막을 수 없다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-6a780e82"
+  },
+  {
+    "id": "AGT-033",
+    "title": "에이전트 특유의 위험, 프롬프트 인젝션",
+    "path": "docs/concepts/agent/AGT-033.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-9a1a9ab6",
+    "keywords": [
+      "인젝션",
+      "신뢰경계",
+      "정보유출"
+    ],
+    "summary": "프롬프트 인젝션은 읽은 외부 데이터가 권한 있는 지시처럼 취급되는 문제다. 도구 사용 시스템에서는 잘못된 답을 넘어 정보 유출과 상태 변경으로 이어질 수 있다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-9a1a9ab6"
+  },
+  {
+    "id": "AGT-034",
+    "title": "무슨 일이 있었는지 알아야 고친다",
+    "path": "docs/concepts/agent/AGT-034.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-a3c853ae",
+    "keywords": [
+      "궤적",
+      "로그",
+      "완료율"
+    ],
+    "summary": "궤적 로깅은 어떤 요청이 어떤 도구와 관찰을 거쳐 끝났는지 재구성하는 자료다. 최종 답만으로는 도구 선택과 실행 실패를 분리하기 어렵다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-a3c853ae"
+  },
+  {
+    "id": "AGT-035",
+    "title": "운영에서 비용과 한도를 지킨다",
+    "path": "docs/concepts/agent/AGT-035.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-50d01f57",
+    "keywords": [
+      "비용통제",
+      "일일한도",
+      "quota"
+    ],
+    "summary": "비용 통제는 실행, 사용자, 서비스와 제공사 계층을 나눠 한 요청이나 한 버그가 전체 예산을 소모하지 못하게 하는 설계다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-50d01f57"
+  },
+  {
+    "id": "AGT-036",
+    "title": "배포, 서버로 감싼다",
+    "path": "docs/concepts/agent/AGT-036.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-98d1272f",
+    "keywords": [
+      "배포",
+      "작업큐",
+      "jobid"
+    ],
+    "summary": "긴 에이전트 실행을 서버로 감싸려면 작업 수명과 HTTP 요청 수명을 분리해야 한다. 큐, 결과 저장과 대화 동시성이 추가로 필요하다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-98d1272f"
+  },
+  {
+    "id": "AGT-037",
+    "title": "잘 안 될 때 증상별로 짚기",
+    "path": "docs/concepts/agent/AGT-037.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-62278c45",
+    "keywords": [
+      "디버깅",
+      "증상",
+      "성공률"
+    ],
+    "summary": "증상별 진단은 최종 답을 무작정 수정하기보다 선택, 인자, 실행 결과와 반복을 궤적에서 나누어 보는 방법이다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-62278c45"
+  },
+  {
+    "id": "AGT-038",
+    "title": "따라 하기 폭주하는 에이전트를 잡아 고치기",
+    "path": "docs/concepts/agent/AGT-038.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-e26de84d",
+    "keywords": [
+      "폭주실습",
+      "오류계약",
+      "hint"
+    ],
+    "summary": "폭주 수정 실습은 정보가 없는 실패 응답이 반복 탐색을 부르는 과정을 재현하고 도구 계약을 개선하는 교육 예다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-e26de84d"
+  },
+  {
+    "id": "AGT-039",
+    "title": "스스로 해 보기",
+    "path": "docs/concepts/agent/AGT-039.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-cc4d9bbc",
+    "keywords": [
+      "자가실습",
+      "비교평가",
+      "실패주입"
+    ],
+    "summary": "단계별 자가 실습은 도구 선택, 실패와 제동을 직접 관찰하고 개선을 측정하도록 구성된 학습 과제다. 과제 제시와 수행 완료는 구분한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-cc4d9bbc"
+  },
+  {
+    "id": "AGT-040",
+    "title": "MCP 로 도구를 표준 방식으로 붙인다",
+    "path": "docs/concepts/agent/AGT-040.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-97c5ba24",
+    "keywords": [
+      "MCP",
+      "STDIO",
+      "도구서버"
+    ],
+    "summary": "MCP는 여러 호스트가 같은 도구 서버를 공통 규약으로 연결하도록 하는 인터페이스다. 연결 재사용성과 서버 권한을 함께 검토해야 한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-97c5ba24"
+  },
+  {
+    "id": "AGT-041",
+    "title": "RAG 를 도구 하나로 붙인다",
+    "path": "docs/concepts/agent/AGT-041.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-1615479f",
+    "keywords": [
+      "AgenticRAG",
+      "검색도구",
+      "인용"
+    ],
+    "summary": "RAG를 검색 도구로 제공하면 모델이 검색 필요성과 재검색을 선택한다. 고정 검색 파이프라인보다 유연하지만 필요한 검색을 생략하는 실패가 생긴다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-1615479f"
+  },
+  {
+    "id": "AGT-042",
+    "title": "코드 실행 도구를 안전하게 준다",
+    "path": "docs/concepts/agent/AGT-042.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-24c1219f",
+    "keywords": [
+      "코드실행",
+      "샌드박스",
+      "컨테이너"
+    ],
+    "summary": "코드 실행 도구는 계산과 데이터 처리를 검증 가능하게 하지만 생성된 코드를 비신뢰 입력으로 격리해야 한다. 프로세스 분리만으로 파일과 네트워크를 막을 수는 없다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-24c1219f"
+  },
+  {
+    "id": "AGT-043",
+    "title": "파일과 브라우저 도구",
+    "path": "docs/concepts/agent/AGT-043.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-7a45ab34",
+    "keywords": [
+      "파일도구",
+      "브라우저",
+      "SSRF"
+    ],
+    "summary": "파일과 웹 도구는 필요한 구간만 읽도록 탐색과 본문 읽기를 나누는 것이 핵심이다. 경로와 URL은 모델이 제안한 외부 입력으로 검사한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-7a45ab34"
+  },
+  {
+    "id": "AGT-044",
+    "title": "에이전트를 어떻게 재나",
+    "path": "docs/concepts/agent/AGT-044.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-1e0cdbbf",
+    "keywords": [
+      "평가",
+      "거부정확도",
+      "궤적효율"
+    ],
+    "summary": "에이전트 평가는 최종 정답, 도구 선택, 경로 효율과 올바른 거부를 분리해 측정하는 것이다. 한 점수는 서로 다른 실패를 숨길 수 있다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-1e0cdbbf"
+  },
+  {
+    "id": "AGT-045",
+    "title": "도구를 단위 테스트한다",
+    "path": "docs/concepts/agent/AGT-045.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-2977672e",
+    "keywords": [
+      "단위테스트",
+      "경계검사",
+      "실패처리"
+    ],
+    "summary": "도구 단위 테스트는 모델 판단을 제거하고 함수의 정상 동작과 경계 및 실패 처리를 확인한다. 그 다음 선택 평가와 전체 실행 평가로 범위를 넓힌다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-2977672e"
+  },
+  {
+    "id": "AGT-046",
+    "title": "궤적을 테스트한다, 재현 가능하게 만들기",
+    "path": "docs/concepts/agent/AGT-046.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-4fb62faf",
+    "keywords": [
+      "녹화",
+      "재생",
+      "재현성"
+    ],
+    "summary": "궤적 녹화와 재생은 고정된 모델 응답을 사용해 루프와 금지 행동 및 순서를 반복 검사하는 방식이다. 실시간 모델 품질 평가는 별도로 필요하다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-4fb62faf"
+  },
+  {
+    "id": "AGT-047",
+    "title": "회귀를 막는 CI",
+    "path": "docs/concepts/agent/AGT-047.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-6f136f35",
+    "keywords": [
+      "CI",
+      "회귀게이트",
+      "배포검증"
+    ],
+    "summary": "CI 회귀 게이트는 품질, 금지 행동과 비용 기준을 기계적으로 검사해 조용한 성능 저하를 드러낸다. 빠른 오프라인 검사와 유료 평가를 분리한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-6f136f35"
+  },
+  {
+    "id": "AGT-048",
+    "title": "이 실습을 하는 법",
+    "path": "docs/concepts/agent/AGT-048.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-e2a2f88f",
+    "keywords": [
+      "클론코딩",
+      "학습경로",
+      "C01-C10"
+    ],
+    "summary": "클론 코딩 안내는 열 개 실습을 기초 루프에서 도구 안전, 그래프와 배포까지 연결하는 학습 경로다. 설치 지시와 예상 결과는 실행 사실이 아니다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-e2a2f88f"
+  },
+  {
+    "id": "AGT-049",
+    "title": "C-01, 프레임워크 없이 만드는 첫 에이전트",
+    "path": "docs/concepts/agent/AGT-049.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-4c0783cb",
+    "keywords": [
+      "C01",
+      "기초실습",
+      "계산도구"
+    ],
+    "summary": "C-01은 프레임워크 없이 두 도구를 연결해 모델 요청과 실제 실행 및 관찰의 왕복을 확인하는 실습이다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-4c0783cb"
+  },
+  {
+    "id": "AGT-050",
+    "title": "C-02, 파일 정리 에이전트",
+    "path": "docs/concepts/agent/AGT-050.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-d7292328",
+    "keywords": [
+      "C02",
+      "파일정리",
+      "승인"
+    ],
+    "summary": "C-02는 파일 목록을 보고 정리 계획을 만든 뒤 승인된 이동만 실행하는 실습이다. 경로 범위와 변경 전 확인을 함께 배운다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-d7292328"
+  },
+  {
+    "id": "AGT-051",
+    "title": "C-03, SQL 분석 에이전트",
+    "path": "docs/concepts/agent/AGT-051.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-feaa5e03",
+    "keywords": [
+      "C03",
+      "SQL실습",
+      "DuckDB"
+    ],
+    "summary": "C-03은 자연어 질문을 DB 스키마에 맞는 조회 SQL로 바꾸고 실행 결과를 해석하는 실습이다. 쓰기 제한과 결과 크기 통제가 중요하다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-feaa5e03"
+  },
+  {
+    "id": "AGT-052",
+    "title": "C-04, 웹 조사 에이전트",
+    "path": "docs/concepts/agent/AGT-052.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-8bedad91",
+    "keywords": [
+      "C04",
+      "웹조사",
+      "출처검증"
+    ],
+    "summary": "C-04는 웹 검색 후보에서 본문을 읽고 실제 근거를 인용해 조사 결과를 작성하는 실습이다. 검색과 읽음 및 인용 검증 상태를 구분해야 한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-8bedad91"
+  },
+  {
+    "id": "AGT-053",
+    "title": "C-05, RAG 고객지원 에이전트",
+    "path": "docs/concepts/agent/AGT-053.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-2c1cea73",
+    "keywords": [
+      "C05",
+      "RAG상담",
+      "거부평가"
+    ],
+    "summary": "C-05는 작은 규정 검색기를 도구로 붙이고 근거가 없는 질문에서 답을 지어내지 않는 상담 실습이다. 정답뿐 아니라 적절한 미확인 응답을 학습한다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-2c1cea73"
+  },
+  {
+    "id": "AGT-054",
+    "title": "C-06, 코드 리뷰 에이전트",
+    "path": "docs/concepts/agent/AGT-054.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-616ac0ed",
+    "keywords": [
+      "C06",
+      "코드리뷰",
+      "diff"
+    ],
+    "summary": "C-06은 변경 목록과 diff 및 주변 코드를 읽고 리뷰 지적을 구조화해 전달하는 실습이다. 파일 위치와 위험 시나리오를 검증 가능하게 만드는 것이 목적이다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-616ac0ed"
+  },
+  {
+    "id": "AGT-055",
+    "title": "C-07, LangGraph 승인 흐름",
+    "path": "docs/concepts/agent/AGT-055.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-897d85f7",
+    "keywords": [
+      "C07",
+      "승인실습",
+      "체크포인트"
+    ],
+    "summary": "C-07은 조회는 허용하고 송금 모의 동작 앞에서는 중단해 사람 판단 뒤 재개하는 그래프 실습이다. 대기 상태와 부작용 상태가 다르다는 점을 배운다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-897d85f7"
+  },
+  {
+    "id": "AGT-056",
+    "title": "C-08, MCP 서버를 만들고 붙인다",
+    "path": "docs/concepts/agent/AGT-056.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-85ed8fd2",
+    "keywords": [
+      "C08",
+      "MCP실습",
+      "메모서버"
+    ],
+    "summary": "C-08은 메모 기능을 MCP 서버 한 벌로 노출하고 여러 호스트에서 도구를 사용하는 실습이다. 표준 연결과 서버 자체의 경로 및 쓰기 책임을 배운다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-85ed8fd2"
+  },
+  {
+    "id": "AGT-057",
+    "title": "C-09, 멀티 에이전트 리서치 팀",
+    "path": "docs/concepts/agent/AGT-057.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-f7ba75d2",
+    "keywords": [
+      "C09",
+      "Send",
+      "병렬취합"
+    ],
+    "summary": "C-09는 독립 하위 작업을 동적으로 나눠 병렬 결과를 모으고 단일 방식과 비교하는 실습이다. 분산 자체보다 측정 가능한 이득을 확인하는 것이 목적이다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-f7ba75d2"
+  },
+  {
+    "id": "AGT-058",
+    "title": "C-10, 평가 세트와 API 배포",
+    "path": "docs/concepts/agent/AGT-058.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-208429de",
+    "keywords": [
+      "C10",
+      "FastAPI",
+      "평가배포"
+    ],
+    "summary": "C-10은 상담 루프를 평가 계약과 API로 감싸 서비스 형태를 연습하는 단계다. 평가 실행과 서버 포장이 운영 완성을 자동 보장하지는 않는다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-208429de"
+  },
+  {
+    "id": "AGT-059",
+    "title": "마무리와 다음 단계",
+    "path": "docs/concepts/agent/AGT-059.md",
+    "source_id": "SRC-02",
+    "source_anchor": "s-87b6509c",
+    "keywords": [
+      "마무리",
+      "학습순서",
+      "점진확장"
+    ],
+    "summary": "마무리 학습 경로는 작은 읽기 전용 시스템에서 시작해 관측과 제동을 갖춘 뒤 필요한 쓰기와 평가를 더하는 순서다. 도구 품질과 실행 통제가 모델 선택만큼 중요하다.",
+    "original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html#s-87b6509c"
+  }
+]

@@ -1,0 +1,30 @@
+# Agent Guide
+
+> Korean guide to agent, MCP and harness architecture. Course paraphrases and AI design extensions are labeled. Offline examples do not certify production behavior.
+
+## Entry points
+- [AI reading contract](AGENTS.md)
+- [Start here](docs/START_HERE.md)
+- [Task routes](docs/ROUTES.md)
+- [Machine-readable topics](metadata/topics.json)
+- [All concepts](docs/CONCEPTS.md)
+
+## Design and implementation
+- [Requirements](docs/design/01-requirements.md)
+- [Architecture](docs/design/02-architecture.md)
+- [Harness](docs/design/03-harness.md)
+- [MCP](docs/design/04-mcp.md)
+- [Data and context](docs/design/05-data-context.md)
+- [Security](docs/design/06-security.md)
+- [Evaluation](docs/design/07-evaluation.md)
+- [Delivery](docs/design/08-delivery.md)
+- [Worked GPU comparison app design](docs/design/09-worked-example.md)
+- [Reusable prompts](docs/PROMPTS.md)
+- [App specification template](templates/APP_SPEC.md)
+- [Tool contract template](templates/TOOL_SPEC.md)
+- [Evaluation plan template](templates/EVAL_PLAN.md)
+
+## Evidence and limits
+- [Source policy](SOURCE_POLICY.md)
+- [Page coverage](metadata/page-coverage.csv)
+- [Verification](docs/VERIFICATION.md)

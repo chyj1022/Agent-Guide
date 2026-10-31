@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationRunState",
+  "type": "object", "additionalProperties": false,
+  "required": ["run_id", "version", "status", "limits", "usage"],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "version": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["pending", "running", "waiting_approval", "completed", "failed", "cancelled", "budget_exceeded"]},
+    "limits": {"$ref": "#/$defs/counters"},
+    "usage": {"$ref": "#/$defs/counters"}
+  },
+  "$defs": {"counters": {"type": "object", "additionalProperties": false, "required": ["steps", "tool_calls", "cost_microunits"], "properties": {"steps": {"type": "integer", "minimum": 0}, "tool_calls": {"type": "integer", "minimum": 0}, "cost_microunits": {"type": "integer", "minimum": 0}}}}
+}

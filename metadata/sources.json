@@ -1,0 +1,28 @@
+[
+  {
+    "id": "SRC-01",
+    "name": "agentic ai 공부.pdf",
+    "sha256": "7798d26b571c6c7ac27fa2c9395f808d0600f82f1041240b1b6333a370d64ca5",
+    "pages": 53,
+    "topic_count": 37,
+    "text_extraction": "image PDF; local kor+eng OCR",
+    "auxiliary": "locally archived course HTML; no canonical URL available",
+    "correspondence": "all topic bodies read; page mapping automatic except limited visual samples",
+    "raw_source_distributed": false,
+    "auxiliary_original_url": "https://tech-learning-hub.pages.dev/courses/agentic-ai/complete-guide.html",
+    "original_url_status": "link found in archived HTML; live content not compared"
+  },
+  {
+    "id": "SRC-02",
+    "name": "Ai agent.pdf",
+    "sha256": "e67ea1ad90f78c14d3c781db30e069926e4c2629d479d60e0b1e25bed92be094",
+    "pages": 125,
+    "topic_count": 59,
+    "text_extraction": "image PDF; local kor+eng OCR",
+    "auxiliary": "locally archived course HTML; no canonical URL available",
+    "correspondence": "all topic bodies read; page mapping automatic except limited visual samples",
+    "raw_source_distributed": false,
+    "auxiliary_original_url": "https://tech-learning-hub.pages.dev/courses/ai-agent/complete-guide.html",
+    "original_url_status": "link found in archived HTML; live content not compared"
+  }
+]
